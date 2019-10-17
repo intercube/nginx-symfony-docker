@@ -1,12 +1,12 @@
 FROM alpine:latest
 
-LABEL maintainer="Jeroen Ketelaar <jeroen@ketelaar.me>"
+LABEL maintainer="Jeroen Ketelaar"
 
 RUN apk add --update nginx
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
 
 ADD config/nginx.conf /etc/nginx/
-ADD config/symfony.conf /etc/nginx/conf.d/
+ADD config/website.conf /etc/nginx/conf.d/
 RUN rm -rf /etc/nginx/conf.d/default.conf
 
 RUN echo "upstream php-upstream { server php:9001; }" > /etc/nginx/conf.d/upstream.conf
